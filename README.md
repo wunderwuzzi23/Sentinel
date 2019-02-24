@@ -1,55 +1,42 @@
-﻿# Homefield Sentinel
+# Homefield Sentinel
 
-The Homefield Sentinel is a basic Windows Honeypot Service that watches for Audit events in the event log. In particular it looks for access to a file named passwords.txt. 
-When the file is accessed, it will write the infromation to a log file and also send email to notify that someone accessed the file.
+The Homefield Sentinel is a Windows Honeypot Service that watches for Audit events in the event log. 
 
-## Pre-Condition:
-## ==============
--) Configure Windows to log audit events
--) Create a file called passwords.txt on the machine and add a SACL enty to emit audit events on access/read.
+In particular it looks for access to a file named passwords.txt. When the file is opened, the Sentinel will write the details of the audit event to the sentinel.log file and additionally also send an email to notify that someone accessed the file.
+
+The passwords.txt file is hardcoded for now, but can easily be updated, or ideally be modified to read the files to monitor for from the Homefield.Sentinel.exe.config file.
 
 
-## Installation:
-## =============
+## Auditing Setup
+-) Configure Windows to log audit events (update local group policy)
+-) Create the honeypot file called passwords.txt on the machine and add a SACL enty to emit audit events on access/read.
+
+
+## Installation
 
 installutil Homefield.Sentinel.exe
 
-During install a couple of configuration settings will be needed (here is what it will look like)
+During install a couple of configuration settings will be needed (here is what it will look like):
 
-**********************************************
-*** Homefield Sentinel Setup Configuration ***
-**********************************************
 Smtp Server (Default smtp-mail.outlook.com):
 Smtp Server Port (Default 587):
 Email Account for Notifications: 
 Password:
 
-**********************************************
-*** Install and Configuration Complete     ***
-*** Run: net start "Homefield Sentinel"    ***
-**********************************************
-
-The Commit phase completed successfully.
-
-The transacted install has completed.
 
 ## Launch the Service
-## ==================
 
- net start "Homefield Sentinel"
+net start "Homefield Sentinel"
 
- ## Launch the Service
- ## ==================
- There is a log file, named sentinel.log (in \windows\system32\sentinel.log).
+There is a log file in the directory of the Homefield.Sentine.exe named sentinel.log
 
 
 ## Uninstall:
-## ==========
+
 installutil /u Homefield.Sentinel.exe
 
 
 ## License
-## =======
 
 MIT License
 
