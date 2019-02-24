@@ -8,8 +8,9 @@ The passwords.txt file is hardcoded for now, but can easily be updated, or ideal
 
 
 ## Auditing Setup
--) Configure Windows to log audit events (update local group policy)
--) Create the honeypot file called passwords.txt on the machine and add a SACL enty to emit audit events on access/read.
+
+ - Configure Windows to log audit events (update local group policy)
+ - Create the honeypot file called passwords.txt on the machine and add a SACL enty to emit audit events on access/read.
 
 
 ## Installation
